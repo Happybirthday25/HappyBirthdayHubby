@@ -61,63 +61,17 @@
       box-shadow: 0 2px 6px rgba(255, 96, 144, 0.35);
     }
 
-    /* Контейнер — теперь горизонтальный ряд */
-.album {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0; /* убираем стандартные промежутки, сами зададим смещения */
-  margin: 35px auto 20px;
-  max-width: 420px;
-}
-
-/* Общий стиль рамочек */
-.photo-frame {
-  width: 33%;
-  max-width: 180px;
-  background: #fff;
-  padding: 8px 8px 16px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-  position: relative;
-  z-index: 1;
-}
-
-.photo-frame img {
-  width: 100%;
-  border-radius: 8px;
-  display: block;
-}
-
-/* Лёгкое перекрытие 8% */
-.photo-1 {
-  transform: translateX(8%);
-  z-index: 1;
-}
-
-.photo-2 {
-  transform: translateX(0%);
-  z-index: 2; /* среднее фото — выше */
-}
-
-.photo-3 {
-  transform: translateX(-8%);
-  z-index: 1;
-}
-
-/* Для телефонов уменьшаем размеры */
-@media (max-width: 400px) {
-  .photo-frame {
-    max-width: 150px;
-  }
-  .photo-1 {
-    transform: translateX(6%);
-  }
-  .photo-3 {
-    transform: translateX(-6%);
-  }
-}
+    /* фото */
+    #couple-photo {
+      display: block;
+      max-width: 240px;
+      width: 70%;
+      height: auto;
+      margin: 20px auto 10px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      object-fit: cover;
+    }
 
     /* ссылка изначально невидима */
     #gift-link {
@@ -148,27 +102,17 @@
   <h1>С Днём рождения! 🎉</h1>
   <p>Спасибо, что прошёл квиз — вот твой подарок!</p>
 
-  <!-- "альбом" из трёх фото -->
-  <div class="album">
-    <div class="photo-frame photo-1">
-      <img src="photo1.jpg" alt="Фото 1">
-    </div>
-    <div class="photo-frame photo-2">
-      <img src="photo2.jpg" alt="Фото 2">
-    </div>
-    <div class="photo-frame photo-3">
-      <img src="photo3.jpg" alt="Фото 3">
-    </div>
-  </div>
+  <!-- ваше фото -->
+  <img id="couple-photo" src="photo.jpg" alt="Мы с тобой">
 
   <audio id="bg-music" autoplay muted>
-    <source src="music.mp3" type="audio/mpeg">
+    <source src="Love.mp3" type="audio/mpeg">
   </audio>
 
   <button id="play-btn" class="btn">▶ Включить музыку</button>
 
   <p id="gift-link">
-    <a href="https://ССЫЛКА_НА_ТВОЙ_СЕРТИФИКАТ" target="_blank">
+    <a href="https://www.grip.de" target="_blank">
       Получить подарочный сертификат 🎁
     </a>
   </p>
@@ -215,4 +159,3 @@
   </script>
 </body>
 </html>
-
