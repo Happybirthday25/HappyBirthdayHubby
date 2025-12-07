@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Поздравление!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      text-align: center;
+      padding: 40px 20px;
+      background: #fef5ff;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+    a {
+      font-size: 1.1rem;
+      text-decoration: none;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>С Днём рождения! 🎉</h1>
+  <p>Спасибо, что прошёл квиз — вот твой подарок!</p>
+
+  <audio id="bg-music">
+    <source src="Love.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="btn" onclick="playMusic()">
+    ▶ Включить музыку
+  </button>
+
+  <p>
+    <a href="https://www.grip.de" target="_blank">
+      Получить подарочный сертификат 🎁
+    </a>
+  </p>
+
+  <script>
+    const audio = document.getElementById('bg-music');
+
+    function playMusic() {
+      audio.volume = 0.7;
+      audio.play().catch(err => {
+        console.log('Не удалось воспроизвести звук:', err);
+      });
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        playMusic();
+      }, 300);
+    });
+  </script>
+</body>
+</html>
