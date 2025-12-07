@@ -33,6 +33,9 @@
       cursor: pointer;
       font-size: 1rem;
     }
+    #play-btn {
+      margin-top: 25px;
+    }
   </style>
 </head>
 
@@ -40,35 +43,59 @@
   <h1>С Днём рождения! 🎉</h1>
   <p>Спасибо, что прошёл квиз — вот твой подарок!</p>
 
-  <audio id="bg-music">
+  <!-- музыка -->
+  <audio id="bg-music" autoplay muted>
     <source src="Love.mp3" type="audio/mpeg">
   </audio>
 
-  <button class="btn" onclick="playMusic()">
+  <!-- кнопка-запаска, если автостарт заблокирован -->
+  <button id="play-btn" class="btn">
     ▶ Включить музыку
   </button>
 
   <p>
-    <a href="https://www.grip.de" target="_blank">
+    <a href="https://happybirthday25.github.io/HappyBirthdayHubby/" target="_blank">
       Получить подарочный сертификат 🎁
     </a>
   </p>
 
   <script>
     const audio = document.getElementById('bg-music');
+    const btn = document.getElementById('play-btn');
+    let started = false;
 
-    function playMusic() {
+    function startAudio() {
+      if (started) return;
+      started = true;
+
       audio.volume = 0.7;
-      audio.play().catch(err => {
-        console.log('Не удалось воспроизвести звук:', err);
+
+      audio.play().then(() => {
+        // если удалось — включаем звук и прячем кнопку
+        audio.muted = false;
+        if (btn) btn.style.display = 'none';
+        console.log('Музыка запущена автоматически');
+      }).catch(err => {
+        // если не удалось — показываем кнопку
+        console.log('Автостарт не разрешён:', err);
+        if (btn) btn.style.display = 'inline-block';
       });
     }
 
+    // пробуем запустить при загрузке страницы
     window.addEventListener('load', () => {
-      setTimeout(() => {
-        playMusic();
-      }, 300);
+      setTimeout(startAudio, 300);
     });
+
+    // если автостарт всё-таки не сработал — запуск по клику
+    if (btn) {
+      btn.addEventListener('click', () => {
+        audio.muted = false;
+        audio.volume = 0.7;
+        audio.play().catch(err => console.log(err));
+        btn.style.display = 'none';
+      });
+    }
   </script>
 </body>
 </html>
